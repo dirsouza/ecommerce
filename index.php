@@ -66,8 +66,8 @@ $app->get('/admin/users', function() {
     
     $page = new PageAdmin();
     
-    $page->setTpl("users", array(
-        'users' => $users
+    $page->setTpl('users', array(
+        'users'=>$users
     ));
     
 });
@@ -78,7 +78,7 @@ $app->get('/admin/users/create', function() {
     
     $page = new PageAdmin();
     
-    $page->setTpl("users_create");
+    $page->setTpl("users-create");
     
 });
 
@@ -94,7 +94,7 @@ $app->get('/admin/users/:iduser', function($iduser) {
     
     $page = new PageAdmin();
     
-    $page->setTpl("users_update");
+    $page->setTpl("users-update");
     
 });
 

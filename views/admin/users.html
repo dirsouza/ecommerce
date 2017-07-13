@@ -28,10 +28,10 @@
                                 <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Nome</th>
-                                    <th>E-mail</th>
-                                    <th>Login</th>
-                                    <th style="width: 60px">Admin</th>
-                                    <th style="width: 140px">&nbsp;</th>
+                                    <th style="width: 350px">E-mail</th>
+                                    <th style="width: 200px">Login</th>
+                                    <th style="width: 100px">Admin</th>
+                                    <th style="width: 70px">&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,9 +42,9 @@
                                     <td>{$value.desemail}</td>
                                     <td>{$value.deslogin}</td>
                                     <td>{if="$value.inadmin == 1"}Sim{else}Não{/if}</td>
-                                    <td>
-                                        <a href="/admin/users/{$value.iduser}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                                        <a href="/admin/users/{$value.iduser}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                                    <td align="center">
+                                        <a href="/admin/users/{$value.iduser}" class="btn btn-primary btn-xs btn-flat" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                                        <a href="/admin/users/{$value.iduser}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs btn-flat" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 {/loop}

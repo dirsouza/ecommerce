@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -52,8 +52,9 @@
             </div>
           </div>
           <!-- /.box-body -->
-          <div class="box-footer">
+          <div class="box-footer modal-footer">
             <button type="submit" class="btn btn-success">Cadastrar</button>
+            <button type="button" class="btn btn-default" onclick="javascript: location.href='/admin/users'">Cancelar</button>
           </div>
         </form>
       </div>

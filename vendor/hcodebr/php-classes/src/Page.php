@@ -35,20 +35,20 @@ class Page {
 
     private function setData($data = array()) {
 
-        foreach ($this->options['data'] as $key => $value) {
+        foreach ($data as $key => $value) {
             $this->tpl->assign($key, $value);
-        }
+        }        
     }
 
     public function setTpl($name, $data = array(), $returnHTML = false) {
 
         $this->setData($data);
-
+        
         return $this->tpl->draw($name, $returnHTML);
     }
 
     public function __destruct() {
-
+        
         if ($this->options['footer'] === true) $this->tpl->draw("footer");
     }
 

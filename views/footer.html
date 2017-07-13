@@ -93,6 +93,15 @@
     
     <!-- Slider -->
     <script type="text/javascript" src="../src/site/js/bxslider.min.js"></script>
-	<script type="text/javascript" src="../src/site/js/script.slider.js"></script>
+    <script type="text/javascript" src="../src/site/js/script.slider.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function() {
+               $('[data-toggle="tooltip"]').tooltip() 
+            });
+        });
+    </script>
+    
   </body>
 </html>
