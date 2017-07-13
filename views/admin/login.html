@@ -35,7 +35,7 @@
 
                 <form action="/admin/login" method="post">
                     <div class="form-group has-feedback">
-                        <input type="text" name="login" class="form-control" placeholder="Login">
+                        <input type="text" name="login" class="form-control" autofocus placeholder="Login">
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
