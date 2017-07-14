@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -26,8 +26,13 @@
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Erro!</h4>
+                Usuário inesistente ou senha inválida.
+            </div>
             <div class="login-logo">
-                <a href="login"><b>E-Commerce</b>Admin</a>
+                <a href="/admin/login"><b>E-Commerce</b>Admin</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
