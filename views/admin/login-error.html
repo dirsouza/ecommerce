@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Hcode Store | Admin</title>
+        <title>E-Commerce | Login</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.6 -->
@@ -32,7 +32,7 @@
                 Usuário inesistente ou senha inválida.
             </div>
             <div class="login-logo">
-                <a href="/admin/login"><b>E-Commerce</b>Admin</a>
+                <a href="/admin/login"><b>E-Commerce</b>Login</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
