@@ -51,7 +51,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="../../src/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs"><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -59,8 +59,9 @@
                                         <img src="../../src/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                            <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                                            <small>Cadastrado em <?php echo date('d/m/Y', $user["dtregister"]); ?></small>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
@@ -92,7 +93,7 @@
                             <img src="../../src/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
