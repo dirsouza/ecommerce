@@ -50,19 +50,18 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="../../src/admin/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs"><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                    <img src="../../src/admin/dist/img/avatar7.png" class="user-image" alt="User Image">
+
+                                    <span></span>
+
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="../../src/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                        <img src="../../src/admin/dist/img/avatar7.png" class="img-circle" alt="User Image">
 
-                                        <p>
-                                            <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        <p></p>
 
-                                            <small>Cadastrado em <?php echo date('d/m/Y', $user["dtregister"]); ?></small>
-                                        </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
@@ -90,10 +89,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="../../src/admin/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="../../src/admin/dist/img/avatar6.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                            <p></p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>

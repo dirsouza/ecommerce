@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -52,7 +52,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="../../src/admin/dist/img/avatar7.png" class="user-image" alt="User Image">
 
-                                    <span>{$user.desperson}</span>
+                                    <span><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 
                                 </a>
                                 <ul class="dropdown-menu">
@@ -60,7 +60,7 @@
                                     <li class="user-header">
                                         <img src="../../src/admin/dist/img/avatar7.png" class="img-circle" alt="User Image">
 
-                                        <p>{$user.desperson}</p>
+                                        <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
 
                                     </li>
                                     <!-- Menu Footer-->

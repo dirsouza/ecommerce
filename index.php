@@ -26,8 +26,8 @@ $app->get('/admin', function() {
 
     $user = new User();
 
-    $user->get((int) $_SESSION[User::SESSION]['iduser']);
-    
+    $user->get($_SESSION[User::SESSION]['iduser']);
+
     $page = new PageAdmin();
 
     $page->setTpl('index', array(
@@ -42,7 +42,7 @@ $app->get('/admin/login', function() {
         'footer' => false
     ]);
 
-    $page->setTpl("login");
+    $page->setTpl('login');
 });
 
 $app->get('/admin/login/error', function() {

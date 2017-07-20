@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -51,17 +51,13 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="../../src/admin/dist/img/avatar7.png" class="user-image" alt="User Image">
-
-                                    <span>{$user.desperson}</span>
-
+                                    <span>Usuário</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="../../src/admin/dist/img/avatar7.png" class="img-circle" alt="User Image">
-
-                                        <p>{$user.desperson}</p>
-
+                                        <p>Usuário</p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
@@ -105,7 +101,7 @@
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="/admin/users">
+                            <a href="/users">
                                 <i class="fa fa-users"></i>
                                 <span>Usuários</span>
                             </a>

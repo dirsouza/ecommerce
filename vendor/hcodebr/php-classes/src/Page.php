@@ -30,26 +30,29 @@ class Page {
 
         $this->setData($this->options['data']);
 
-        if ($this->options['header'] === true) $this->tpl->draw("header");
+        if ($this->options['header'] === true)
+            $this->tpl->draw("header");
     }
 
     private function setData($data = array()) {
 
         foreach ($data as $key => $value) {
+
             $this->tpl->assign($key, $value);
-        }        
+        }
     }
 
     public function setTpl($name, $data = array(), $returnHTML = false) {
 
         $this->setData($data);
-        
+
         return $this->tpl->draw($name, $returnHTML);
     }
 
     public function __destruct() {
-        
-        if ($this->options['footer'] === true) $this->tpl->draw("footer");
+
+        if ($this->options["footer"] === true)
+            $this->tpl->draw("footer");
     }
 
 }
