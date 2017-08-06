@@ -8,6 +8,7 @@ use Slim\Slim;
 use Hcode\Page;
 use Hcode\PageAdmin;
 use Hcode\Model\User;
+use Hcode\Model\Category;
 
 $app = new Slim();
 
@@ -28,11 +29,13 @@ $app->get('/admin', function() {
 
     $user->get($_SESSION[User::SESSION]['iduser']);
 
-    $page = new PageAdmin();
-
-    $page->setTpl('index', array(
-        'user' => $user->getValues()
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
     ));
+
+    $page->setTpl('index');
 });
 
 $app->get('/admin/login', function() {
@@ -79,7 +82,15 @@ $app->get('/admin/users', function() {
 
     $users = User::listAll();
 
-    $page = new PageAdmin();
+    $user = new User();
+
+    $user->get($_SESSION[User::SESSION]['iduser']);
+
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
+    ));
 
     $page->setTpl('users', array(
         'users' => $users
@@ -90,7 +101,15 @@ $app->get('/admin/users/create', function() {
 
     User::verifyLogin();
 
-    $page = new PageAdmin();
+    $user = new User();
+
+    $user->get($_SESSION[User::SESSION]['iduser']);
+
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
+    ));
 
     $page->setTpl("users-create");
 });
@@ -118,11 +137,13 @@ $app->get('/admin/users/:iduser', function($iduser) {
 
     $user->get((int) $iduser);
 
-    $page = new PageAdmin();
-
-    $page->setTpl("users-update", array(
-        'user' => $user->getValues()
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
     ));
+
+    $page->setTpl("users-update");
 });
 
 $app->post('/admin/users/create', function() {
@@ -227,6 +248,56 @@ $app->post('/admin/forgot/reset', function() {
     ]);
 
     $page->setTpl("forgot-reset-success");
+});
+
+$app->get('/admin/categories', function() {
+    User::verifyLogin();
+    
+    $user = new User();
+    $user->get($_SESSION[User::SESSION]['iduser']);
+    
+    $categories = Category::listAll();
+
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
+    ));
+
+    $page->setTpl('categories', array(
+        'categories' => $categories
+    ));
+});
+
+$app->get('/admin/categories/create', function() {
+
+    User::verifyLogin();
+
+    $user = new User();
+    $user->get($_SESSION[User::SESSION]['iduser']);
+
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
+    ));
+
+    $page->setTpl("categories-create");
+});
+
+$app->post('/admin/categories/create', function() {
+
+    User::verifyLogin();
+    
+    $category = new Category();
+
+    $category->setData($_POST);
+
+    $category->save();
+
+    header("location: /admin/categories");
+
+    exit;
 });
 
 $app->run();

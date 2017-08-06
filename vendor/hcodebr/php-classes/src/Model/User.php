@@ -12,6 +12,8 @@ class User extends Model {
     const OPTIONS = [
         'cost' => 12
     ];
+    const STRING_SECURITY = "bG9jYWwucGFwZnVsbC5icg==";
+    const METHOD_ENCRYPT = "AES-128-CBC";
 
     public static function login($login, $password) {
 
@@ -156,9 +158,10 @@ class User extends Model {
                 $dataRecovery = $recovery[0];
 
                 //$code = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, User::SECRET, $dataRecovery['idrecovery'], MCRYPT_MODE_ECB));
-                $code = password_hash($dataRecovery['idrecovery'], PASSWORD_DEFAULT, User::OPTIONS);
+                //$code = password_hash($dataRecovery['idrecovery'], PASSWORD_DEFAULT, User::OPTIONS);
+                $code_encrypted = User::forgotEncrypt($dataRecovery['idrecovery'], User::STRING_SECURITY);
 
-                $link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$code";
+                $link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$code_encrypted";
 
                 $mailer = new Mailer($dataResults['desemail'], $dataResults['desperson'], "Redefinir Senha da Hcode Store", "forgot", array(
                     'name' => $dataResults['desperson'],
@@ -172,11 +175,21 @@ class User extends Model {
         }
     }
 
+    public static function forgotEncrypt($data, $key) {
+        $encryption_key = base64_decode($key);
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(User::METHOD_ENCRYPT));
+        $encrypted = openssl_encrypt($data, User::METHOD_ENCRYPT, $encryption_key, 0, $iv);
+
+        return base64_encode($encrypted . "::" . $iv);
+    }
+
     public static function validForgotDecrypt($code) {
 
         $sql = new Sql();
 
         $results = $sql->select("SELECT idrecovery FROM tb_userspasswordsrecoveries");
+
+        $code_decrypted = User::forgotDecrypt($code, User::STRING_SECURITY);
 
         if (count($results) > 0) {
 
@@ -184,7 +197,7 @@ class User extends Model {
 
                 foreach ($_data as $key => $value) {
 
-                    if (password_verify($value, $code)) {
+                    if ($value === $code_decrypted) {
 
                         $user = $sql->select("
                         SELECT * FROM tb_userspasswordsrecoveries a 
@@ -196,7 +209,7 @@ class User extends Model {
                             a.dtrecovery IS NULL 
                             AND 
                             DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW()", array(
-                            'idrecovery' => $value
+                            ':idrecovery' => $value
                         ));
 
                         if (count($user) === 0) {
@@ -205,13 +218,18 @@ class User extends Model {
                         } else {
 
                             return $user[0];
-
-                            exit;
                         }
                     }
                 }
             }
         }
+    }
+
+    public static function forgotDecrypt($data, $key) {
+        $encryption_key = base64_decode($key);
+        list($encrypted_data, $iv) = explode("::", base64_decode($data), 2);
+
+        return openssl_decrypt($encrypted_data, User::METHOD_ENCRYPT, $encryption_key, 0, $iv);
     }
 
     public static function setForgotUser($idrecovery) {
