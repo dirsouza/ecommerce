@@ -300,4 +300,67 @@ $app->post('/admin/categories/create', function() {
     exit;
 });
 
+$app->get('/admin/categories/:idcategory/delete', function($idcategory) {
+
+    User::verifyLogin();
+
+    $category = new Category();
+
+    $category->get((int) $idcategory);
+
+    $category->delete();
+
+    header("location: /admin/categories");
+
+    exit;
+});
+
+$app->get('/admin/categories/:idcategory', function($idcategory) {
+
+    User::verifyLogin();
+    
+    $user = new User();
+    $user->get($_SESSION[User::SESSION]['iduser']);
+
+    $category = new Category();
+    $category->get((int) $idcategory);
+
+    $page = new PageAdmin(array(
+        'data'=>array(
+            'user'=>$user->getValues()
+        )
+    ));
+
+    $page->setTpl("categories-update", array(
+        'category' => $category->getValues()
+    ));
+});
+
+$app->post('/admin/categories/:idcategory', function($idcategory) {
+    User::verifyLogin();
+
+    $category = new Category();
+
+    $category->get((int) $idcategory);
+
+    $category->setData($_POST);
+
+    $category->update();
+
+    header("location: /admin/categories");
+
+    exit;
+});
+
+$app->get('/categories/:idcategory', function($idcategory) {
+    $category = new Category();
+    $category->get((int)$idcategory);
+    
+    $page = new Page();
+    $page->setTpl('category', array(
+        'category' => $category->getValues(),
+        'products' => []
+    ));
+});
+
 $app->run();
