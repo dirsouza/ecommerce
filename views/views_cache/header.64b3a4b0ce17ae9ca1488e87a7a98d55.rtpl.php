@@ -111,6 +111,13 @@
                                 <span class="pull-right-container"></span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/admin/products">
+                                <i class="fa fa-chain"></i>
+                                <span>Produtos</span>
+                                <span class="pull-right-container"></span>
+                            </a>
+                        </li>
                         <li class="treeview">
                             <a href="/admin/users">
                                 <i class="fa fa-users"></i>
